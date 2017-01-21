@@ -16,7 +16,7 @@ object MediaProvider {
         doAsync {
             Thread.sleep(2000)
             val result = (1..10).map {
-                MediaItem(context.getString(R.string.title) + " $it", "${thumbBase}$it", if (it % 3 == 0) VIDEO else PHOTO)
+                MediaItem(it, context.getString(R.string.title) + " $it", "${thumbBase}$it", if (it % 3 == 0) VIDEO else PHOTO)
             }
 
             uiThread {

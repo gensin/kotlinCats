@@ -9,7 +9,6 @@ import java.util.*
  * Created by pau on 21/01/17.
  */
 
-fun test() {
-
-
+fun test(x: Int?) {
+    val y: Int = x?.dec() ?: 0
 }

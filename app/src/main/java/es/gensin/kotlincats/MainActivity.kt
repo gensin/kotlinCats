@@ -6,10 +6,13 @@ import android.view.Menu
 import android.view.MenuItem
 import es.gensin.kotlincats.MediaItem.Type
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity() {
 
-    val adapter =  MediaAdapter { toast(it.title) }
+    val adapter =  MediaAdapter {
+        startActivity<DetailActivity>(DetailActivity.ITEM_ID to it.id)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?): Unit {
         super.onCreate(savedInstanceState)

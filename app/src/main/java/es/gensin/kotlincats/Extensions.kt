@@ -26,10 +26,6 @@ fun ImageView.loadUrl(url: String) {
     Picasso.with(this.context).load(url).into(this)
 }
 
-inline fun <reified T: Activity> Context.startActivity() {
-    startActivity(Intent(this, T::class.java))
-}
-
 inline fun <reified T: View> View.find(id: Int): T {
     return findViewById(id) as T
 }

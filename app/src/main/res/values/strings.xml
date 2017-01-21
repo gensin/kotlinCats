@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">kotlin Cats</string>
+    <string name="app_name">Catlin</string>
     <string name="all">All</string>
     <string name="photos">Photos</string>
     <string name="videos">Videos</string>
     <string name="title">Cat</string>
+    <string name="title_activity_detail">DetailActivity</string>
 </resources>
