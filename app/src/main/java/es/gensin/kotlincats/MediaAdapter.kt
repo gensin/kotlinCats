@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.view_media_item.view.*
 import kotlin.properties.Delegates
 
-class MediaAdapter(data: List<MediaItem>, val onItemClick: (MediaItem) -> Unit): RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
+class MediaAdapter(data: List<MediaItem> = emptyList(), val onItemClick: (MediaItem) -> Unit): RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
 
     var data: List<MediaItem> by Delegates.observable(data) { prop, old, new ->
         notifyDataSetChanged()

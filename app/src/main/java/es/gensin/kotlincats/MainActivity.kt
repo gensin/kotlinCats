@@ -9,13 +9,30 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    val adapter =  MediaAdapter(MediaProvider.getMedia(this)) { toast(it.title)}
+    val adapter =  MediaAdapter { toast(it.title) }
 
     override fun onCreate(savedInstanceState: Bundle?): Unit {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         recycler.adapter = adapter
+
+        progress.visible()
+        MediaProvider.fetchMediaAsync(this) {
+            updateData(it)
+            progress.gone()
+        }
+    }
+
+    private fun updateData(media: List<MediaItem>, itemId: Int = R.id.filter_all) {
+        adapter.data = media.filter {
+            when(itemId) {
+                R.id.filter_all -> true
+                R.id.filter_photos -> it.type == Type.PHOTO
+                R.id.filter_videos -> it.type == Type.VIDEO
+                else -> false
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -24,13 +41,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem):Boolean {
-        adapter.data = MediaProvider.getMedia(this).filter {
-            when(item.itemId) {
-                R.id.filter_all -> true
-                R.id.filter_photos -> it.type == Type.PHOTO
-                R.id.filter_videos -> it.type == Type.VIDEO
-                else -> false
-            }
+        progress.visible()
+        MediaProvider.fetchMediaAsync(this) {
+            updateData(it, item.itemId)
+            progress.gone()
         }
         return true
     }

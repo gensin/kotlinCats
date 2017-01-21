@@ -33,3 +33,11 @@ inline fun <reified T: Activity> Context.startActivity() {
 inline fun <reified T: View> View.find(id: Int): T {
     return findViewById(id) as T
 }
+
+fun View.visible() {
+    visibility = View.VISIBLE
+}
+
+fun View.gone() {
+    visibility = View.GONE
+}
